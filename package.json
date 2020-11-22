@@ -11,7 +11,7 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .js .",
     "doc": "documentation build src/** -f html -o docs",
-    "test": "xvfb-maybe mocha --recursive --exit"
+    "test": "xvfb-maybe mocha --timeout 120000 --recursive --exit"
   },
   "keywords": [],
   "author": {
