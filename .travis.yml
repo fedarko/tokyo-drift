@@ -1,12 +1,12 @@
 # https://github.com/electron-userland/spectron/blob/e0337898825f1a767a1d4243df13cd28ec4ad7cc/.travis.yml
 os: linux
-dist: xenial
+dist: trusty
 language: node_js
 node_js: '12'
 sudo: required
 
 addons:
-  chrome: stable
+  chrome: beta
 
 services:
   - xvfb
@@ -15,15 +15,15 @@ before_script:
   - export DISPLAY=:99.0
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 & 
   - sleep 3 # give xvfb some time to start
-    # https://docs.travis-ci.com/user/gui-and-headless-browsers/#using-the-chrome-addon-in-the-headless-mode
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - google-chrome-stable --version
 
 install:
   - npm set progress=false
   - npm install
 
 script:
+    # https://docs.travis-ci.com/user/gui-and-headless-browsers/#using-the-chrome-addon-in-the-headless-mode
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - google-chrome-stable --version
   - npm run lint
   - npm run test
   - npm run package
