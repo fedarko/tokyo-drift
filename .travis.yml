@@ -17,6 +17,7 @@ before_script:
   - sleep 3 # give xvfb some time to start
     # https://docs.travis-ci.com/user/gui-and-headless-browsers/#using-the-chrome-addon-in-the-headless-mode
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - google-chrome-stable --version
 
 install:
   - npm set progress=false
