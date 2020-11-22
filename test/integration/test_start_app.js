@@ -11,7 +11,12 @@ describe('Application launch', function () {
       path: electronPath,
       args: [path.join(__dirname, '../..')],
       // https://stackoverflow.com/a/50725918/10730311
-      chromeDriverArgs: ["--disable-dev-shm-usage", "--no-sandbox"]
+      // https://github.com/electron-userland/spectron/issues/357
+      chromeDriverArgs: [
+          "--disable-dev-shm-usage",
+          "--no-sandbox",
+          "--whitelisted-ips=",
+      ]
     })
     return this.app.start()
   })
