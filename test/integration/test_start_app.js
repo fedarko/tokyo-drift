@@ -9,7 +9,9 @@ describe('Application launch', function () {
   beforeEach(function () {
     this.app = new Application({
       path: electronPath,
-      args: [path.join(__dirname, '../..')]
+      args: [path.join(__dirname, '../..')],
+      // https://stackoverflow.com/a/50725918/10730311
+      chromeDriverArgs: ["--disable-dev-shm-usage"]
     })
     return this.app.start()
   })
