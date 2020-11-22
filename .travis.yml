@@ -11,7 +11,7 @@ addons:
 services:
   - xvfb
 
-install:
+before_script:
   # https://www.electronjs.org/docs/tutorial/testing-on-headless-ci
   # https://github.com/electron-userland/spectron#on-travis-ci
   - export DISPLAY=':99.0'
@@ -20,6 +20,8 @@ install:
   - ls /etc/init.d/xvfb
   - sh -e /etc/init.d/xvfb start
   - sleep 3
+
+install:
   - npm set progress=false
   - npm install
 
