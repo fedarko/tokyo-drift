@@ -5,8 +5,8 @@ language: node_js
 node_js: '12'
 sudo: required
 
-addons:
-  chrome: beta
+#addons:
+#  chrome: beta
 
 services:
   - xvfb
@@ -16,14 +16,26 @@ before_script:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 & 
   - sleep 3 # give xvfb some time to start
 
+before_install:
+  # https://unix.stackexchange.com/a/321751, https://stackoverflow.com/a/9745068
+  # Download chrome 85, because we can't download specific versions of chrome
+  # easily. so (https://www.chromium.org/getting-involved/download-chromium),
+  # we hafta go use https://omahaproxy.appspot.com/ to search by version to
+  # find the approx "base position", and then use
+  # https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html
+  # to find a hit. yep.
+  - curl -L -o linux64_chromium85.zip "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F782797%2Fchrome-linux.zip?generation=1593135557762047&alt=media"
+  # creates a chrome-linux/ directory containing a chrome executable
+  - unzip linux64_chromium85.zip
+  # https://docs.travis-ci.com/user/gui-and-headless-browsers/#using-the-chrome-addon-in-the-headless-mode
+  - ./chrome-linux/chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - ./chrome-linux/chrome --version
+
 install:
   - npm set progress=false
   - npm install
 
 script:
-    # https://docs.travis-ci.com/user/gui-and-headless-browsers/#using-the-chrome-addon-in-the-headless-mode
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - google-chrome-stable --version
   - npm run lint
   - npm run test
   - npm run package
