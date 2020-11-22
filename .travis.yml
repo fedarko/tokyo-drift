@@ -24,6 +24,7 @@ before_script:
 
 install:
   - npm set progress=false
+  - npm install -g got@11.5.1
   - npm install
 
 script:
