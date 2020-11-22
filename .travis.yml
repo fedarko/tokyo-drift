@@ -1,6 +1,6 @@
 # https://github.com/electron-userland/spectron/blob/e0337898825f1a767a1d4243df13cd28ec4ad7cc/.travis.yml
 os: linux
-dist: trusty
+dist: xenial
 language: node_js
 node_js: '12'
 sudo: required
