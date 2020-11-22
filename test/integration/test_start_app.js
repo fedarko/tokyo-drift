@@ -11,7 +11,7 @@ describe('Application launch', function () {
       path: electronPath,
       args: [path.join(__dirname, '../..')],
       // https://stackoverflow.com/a/50725918/10730311
-      chromeDriverArgs: ["disable-dev-shm-usage", "no-sandbox"]
+      chromeDriverArgs: ["--disable-dev-shm-usage", "--no-sandbox"]
     })
     return this.app.start()
   })
