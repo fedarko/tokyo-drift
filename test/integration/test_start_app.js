@@ -16,6 +16,8 @@ describe('Application launch', function () {
           "--disable-dev-shm-usage",
           "--no-sandbox",
           "--whitelisted-ips=",
+          "--disable-gpu",
+          "--headless",
       ]
     })
     return this.app.start()
