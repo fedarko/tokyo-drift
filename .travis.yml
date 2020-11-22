@@ -1,4 +1,4 @@
-os: linux
+os: osx
 language: node_js
 
 node_js:
@@ -12,7 +12,7 @@ services:
   - xvfb
 
 before_install:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &"
 
 install:
   - npm set progress=false
