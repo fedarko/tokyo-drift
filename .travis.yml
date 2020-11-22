@@ -1,15 +1,14 @@
-os: osx
+# https://github.com/electron-userland/spectron/blob/e0337898825f1a767a1d4243df13cd28ec4ad7cc/.travis.yml
+os: linux
 language: node_js
-
-node_js:
-  - "lts/*"
+node_js: '12'
 sudo: required
 
 addons:
-    chrome: stable
+  chrome: stable
 
-before_install:
-  - "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &"
+services:
+  - xvfb
 
 before_script:
   - "export DISPLAY=:99.0"
@@ -18,7 +17,7 @@ before_script:
 
 install:
   - npm set progress=false
-  - npm install
+  - npm ci
 
 script:
   - npm run lint
