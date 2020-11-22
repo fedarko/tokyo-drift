@@ -18,6 +18,8 @@ describe('Application launch', function () {
           "--whitelisted-ips=",
           "--disable-gpu",
           "--headless",
+          // https://stackoverflow.com/a/56638103/10730311
+          "--remote-debugging-port=9222",
       ]
     })
     return this.app.start()
